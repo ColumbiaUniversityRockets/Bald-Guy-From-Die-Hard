@@ -20,7 +20,7 @@ MOTOR_NAME = "Loker";
 MOTOR_DIAMETER = "98.0";    %Common: 11.0, 13.0, 18.0, 24.0, 29.0, 38.0, 54.0, 
                             %        75.0, 81.0, 98.0, 111.0, 150.0, 161.0
 MOTOR_LENGTH = "914.0";
-MOTOR_DELAYS = "25";
+MOTOR_DELAYS = "27";
 MOTOR_TOTAL_WEIGHT = "12.5000";
 MOTOR_MANUFACTURER = "Chuckleton";
 
@@ -49,7 +49,7 @@ m_loaded = 4.3;    % N2O mass initially loaded into tank [kg]       //4.3
 Main_m_loaded = m_loaded;
 %****************************************************************
 global Ainj;
-Ainj = 0.0000115;    % injector area [m^2]                           //0.00282094791 m radius, 2.82mm
+Ainj = 0.0000115;    % injector area [m^2]                           //0.00191325996 m radius, 1.9133mm
 Main_Ainj = Ainj;
 %****************************************************************
 global V;
