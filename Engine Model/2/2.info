@@ -1,0 +1,127 @@
+
+    System Info
+                Status:   Solver is finished.
+                Product:   Flow Simulation 2016 SP4.0. Build: 3501
+                Computer name:   DESKTOP-KH6BDH9
+                User name:   dkola
+                Processors:   Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz
+                Memory:   16302 MB / 134217727 MB
+                Operating system:   Windows 10 (or higher) (Version 10.0.16299)
+                CAD version:   SOLIDWORKS 2016 SP4.0
+                CPU speed:   2808 MHz
+
+    General Info
+                Model:   NozzleFlowAssem.SLDASM
+                Project name:   NozzleFlow
+                Project path:   D:\Documents\GitHub\Bald-Guy-From-Die-Hard\Engine Model\2
+                Units system:   SI (m-kg-s)
+                Analysis type:   Internal
+                Exclude cavities without flow conditions :   On
+                Coordinate system:   Global coordinate system
+                Reference axis:   X
+
+    Physical Features
+                Heat conduction in solids:   Off
+                Time dependent:   Off
+                Gravitational effects:   Off
+                Flow type:   Laminar and turbulent
+                High Mach number flow:   On
+                Default roughness:   0 micrometer
+                Default wall conditions:   Adiabatic wall
+
+    Computational Domain
+
+        Size
+                X min:   -0.078 m
+                X max:   0.004 m
+                Y min:   -0.045 m
+                Y max:   0.031 m
+                Z min:   -0.017 m
+                Z max:   0.066 m
+
+    Calculation Mesh
+
+        Basic Mesh Dimensions
+                Number of cells in X:   10
+                Number of cells in Y:   10
+                Number of cells in Z:   10
+
+        Number Of Cells
+                Cells:   1660
+                Fluid cells:   1660
+                Irregular cells:   0
+                Trimmed cells:   0
+                Maximum refinement level:   1
+
+    Goals
+
+        Surface Goals
+
+            SG Av Static Pressure 1
+                Type:   Surface Goal
+                Goal type:   Static Pressure
+                Calculate:   Average value
+                Faces:   Face<1>@Nozzle_Flow-1
+                Coordinate system:   Global coordinate system
+                Use in convergence :   On
+
+            SG Av Total Pressure 1
+                Type:   Surface Goal
+                Goal type:   Total Pressure
+                Calculate:   Average value
+                Faces:   Face<1>@Nozzle_Flow-1
+                Coordinate system:   Global coordinate system
+                Use in convergence :   On
+
+            SG Av Dynamic Pressure 1
+                Type:   Surface Goal
+                Goal type:   Dynamic Pressure
+                Calculate:   Average value
+                Faces:   Face<1>@Nozzle_Flow-1
+                Coordinate system:   Global coordinate system
+                Use in convergence :   On
+
+            SG Av Temperature (Fluid) 1
+                Type:   Surface Goal
+                Goal type:   Temperature (Fluid)
+                Calculate:   Average value
+                Faces:   Face<1>@Nozzle_Flow-1
+                Coordinate system:   Global coordinate system
+                Use in convergence :   On
+
+            SG Mass Flow Rate 1
+                Type:   Surface Goal
+                Goal type:   Mass Flow Rate
+                Faces:   Face<1>@Nozzle_Flow-1
+                Coordinate system:   Global coordinate system
+                Use in convergence :   On
+
+            SG Av Velocity 1
+                Type:   Surface Goal
+                Goal type:   Velocity
+                Calculate:   Average value
+                Faces:   Face<1>@Nozzle_Flow-1
+                Coordinate system:   Global coordinate system
+                Use in convergence :   On
+
+    Goals
+                
+                Name                          	Unit   	Value       	Progress   	Criteria       	Delta          	Use in convergence 
+                SG Av Static Pressure 1       	Pa     	56863.02    	100        	3373.37751     	2210.62646     	On                 
+                SG Av Total Pressure 1        	Pa     	445400.72   	100        	18356.2259     	17924.7779     	On                 
+                SG Av Dynamic Pressure 1      	Pa     	101178.77   	100        	6662.8669      	2870.70348     	On                 
+                SG Av Temperature (Fluid) 1   	K      	172.26      	100        	8.02664446     	3.11289672     	On                 
+                SG Mass Flow Rate 1           	kg/s   	-0.6296     	100        	0.0593968783   	0.0111644671   	On                 
+                SG Av Velocity 1              	m/s    	432.533     	100        	37.6490411     	7.61296433     	On                 
+
+    General Info
+                Iterations:   1340
+                CPU time:   32 s
+
+        Log
+                Calculation started	0:   21:54:01 , Feb 08
+                Calculation has converged since the following criteria are satisfied:	1339:   21:54:33 , Feb 08
+                    Goals are converged	1339:   
+                Calculation finished	1340:   21:54:33 , Feb 08
+                Calculation finished	1340:   21:57:02 , Feb 08
+                Warnings:   A vortex crosses the pressure opening	Boundary Condition : Environment Pressure 1 ; Inlet flow/outlet flow=0.0128225, 		, 
