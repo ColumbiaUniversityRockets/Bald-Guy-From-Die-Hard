@@ -16,16 +16,16 @@ OUTPUT_THRUST_CURVE = 1;
 
 MINIMIZE_VALUE = false;     %Minimize or maximize gradient descent value?
 %******************************THRUST CURVE DATA************************************%
-MOTOR_NAME = "Bald_Guy_From_Die_Hard";
+MOTOR_NAME = "Loker";
 MOTOR_DIAMETER = "98.0";    %Common: 11.0, 13.0, 18.0, 24.0, 29.0, 38.0, 54.0, 
                             %        75.0, 81.0, 98.0, 111.0, 150.0, 161.0
 MOTOR_LENGTH = "914.0";
 MOTOR_DELAYS = "27";
 MOTOR_TOTAL_WEIGHT = "12.5000";
-MOTOR_MANUFACTURER = "Elongated_Muskrat";
+MOTOR_MANUFACTURER = "Chuckleton";
 
 MOTOR_FILEPATH = "C:\Users\dkola\AppData\Roaming\OpenRocket\ThrustCurves";
-MOTOR_FILENAME = "Bald_Guy_From_Die_Hard.eng";
+MOTOR_FILENAME = "Loker.eng";
 %****************************END THRUST CURVE DATA**********************************%
 
 MOTOR_FP = strcat(MOTOR_FILEPATH,"\",MOTOR_FILENAME);   %Create thrust curve file pointer
@@ -45,7 +45,7 @@ global Thrust;
 global initImp;
 %****************************************************************
 global m_loaded;
-m_loaded = 5.0;    % N2O mass initially loaded into tank [kg]       //4.3
+m_loaded = 5.4;    % N2O mass initially loaded into tank [kg]       //4.3
 Main_m_loaded = m_loaded;
 %****************************************************************
 global Ainj;
@@ -53,7 +53,7 @@ Ainj = 0.0000115;    % injector area [m^2]                           //0.0019132
 Main_Ainj = Ainj;
 %****************************************************************
 global V;
-V = 0.008;             % total tank volume [m^3]
+V = 0.009;             % total tank volume [m^3]
 Main_V = V;
 %****************************************************************
 Nozzle_Throat_Diameter = 0.02055;                                       %Diameter of nozzle throat [m]
@@ -262,7 +262,7 @@ function [imp] = calcImpulse(dox,dinj,dgrain,dthroat,dV,dD0)
 
     %parameters of nozzle
     Nozzle_Efficiency = 0.9772;
-    Reaction_Efficiency = 0.75;
+    Reaction_Efficiency = 0.9747;
     Drag_Efficiency = 0.96223;
     Cd = Drag_Efficiency;
 
@@ -425,7 +425,10 @@ function [imp] = calcImpulse(dox,dinj,dgrain,dthroat,dV,dD0)
         dPe = (doxdt+dFdt) - Pe*A_Star*sqrt(Gamma/(R1*Temp))...
             *realpow(2/(Gamma+1),(Gamma+1)/(2*(Gamma - 1)));
         dPe = dPe * R1 * Temp / Vc;
-
+        
+        dmn_dt = Pe*A_Star / (C_Star);
+        
+        dM_chamber = doxdt + dFdt - dmn_dt;
         %Thrust [N]
         thrust = (doxdt + dFdt) * C_Star * Nozzle_Efficiency * Reaction_Efficiency * Thrust_Coeff;
         %chamber_pressure = (doxdt + dFdt) * C_Star * Reaction_Efficiency / (A_Star * Drag_Efficiency);
@@ -453,6 +456,8 @@ function [imp] = calcImpulse(dox,dinj,dgrain,dthroat,dV,dD0)
         Dn_F(i+1,2) = dFdt;
         Dn_m(i+1,1) = t;
         Dn_m(i+1,2) = doxdt + dFdt;
+        Dm_exit(i+1,1) = t;
+        Dm_exit(i+1,2) = dmn_dt;
         Thrust(i+1,1) = t;
         Thrust(i+1,2) = thrust;
         OF(i+1,1) = t;
@@ -467,6 +472,7 @@ function [imp] = calcImpulse(dox,dinj,dgrain,dthroat,dV,dD0)
         n_lo = n_lo + dn_l*tstep;
         Pe = Pe + dPe*tstep;
         D = D + 2*drdt*tstep;
+        
 
         % Physical stops to kick out of loop
         if Pe>=P        %Chamber pressure cannot be greater than tank pressure (explosion)
@@ -502,6 +508,8 @@ function [imp] = calcImpulse(dox,dinj,dgrain,dthroat,dV,dD0)
     Dn_F(i+1,2) = 0;
     Dn_m(i+1,1) = t;
     Dn_m(i+1,2) = 0;
+    Dm_exit(i+1,1) = t;
+    Dm_exit(i+1,2) = 0;
     Thrust(i+1,1) = t;
     Thrust(i+1,2) = 0;
     OF(i+1,1) = t;
@@ -538,11 +546,12 @@ function [imp] = calcImpulse(dox,dinj,dgrain,dthroat,dV,dD0)
             xlabel('Time [s]'), ...
             ylabel('Rate [kmol/s]'), ...
             legend('Gas','Liquid','Combined'),drawnow;
-        figure(10), plot(Dn_ox(:,1),Dn_ox(:,2),'m',Dn_F(:,1),Dn_F(:,2),'c',Dn_m(:,1),Dn_m(:,2), 'r','LineWidth',2),grid, ...
+        figure(10), plot(Dn_ox(:,1),Dn_ox(:,2),'m',Dn_F(:,1),Dn_F(:,2),'c',Dn_m(:,1),Dn_m(:,2), ...
+            'r',Dm_exit(:,1),Dm_exit(:,2), 'b','LineWidth',2),grid, ...
             title('Mass Flow Rate vs. Time'), ...
             xlabel('Time [s]'), ...
-            ylabel('Rate [kmol/s]'), ...
-            legend('Oxidizer','Fuel','Combined'),drawnow;
+            ylabel('Rate [kg/s]'), ...
+            legend('Oxidizer','Fuel','Combined','Nozzle'),drawnow;
         figure(11), plot(Thrust(:,1),Thrust(:,2), 'r','LineWidth',1),grid, ...
             title('Thrust vs. Time'), ...
             xlabel('Time [s]'), ...
