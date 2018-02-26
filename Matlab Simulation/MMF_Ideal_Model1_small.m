@@ -45,15 +45,15 @@ global Thrust;
 global initImp;
 %****************************************************************
 global m_loaded;
-m_loaded = 5.0;    % N2O mass initially loaded into tank [kg]       //4.3
+m_loaded = 4.3;    % N2O mass initially loaded into tank [kg]       //4.3
 Main_m_loaded = m_loaded;
 %****************************************************************
 global Ainj;
-Ainj = 0.0000115;    % injector area [m^2]                           //0.00191325996 m radius, 1.9133mm
+Ainj = 0.0000154;    % injector area [m^2]                           //0.00191325996 m radius, 1.9133mm
 Main_Ainj = Ainj;
 %****************************************************************
 global V;
-V = 0.008;             % total tank volume [m^3]
+V = 0.007;             % total tank volume [m^3]
 Main_V = V;
 %****************************************************************
 Nozzle_Throat_Diameter = 0.02055;                                       %Diameter of nozzle throat [m]
@@ -66,7 +66,7 @@ Length = 0.21;           % Grain Length [m]
 Main_Length = Length;
 %****************************************************************
 global D0;
-D0 = 0.052;              % Initial Port Diameter [m]
+D0 = 0.04;              % Initial Port Diameter [m]
 Main_D0 = D0;
 D = D0;
 
@@ -264,7 +264,9 @@ function [imp] = calcImpulse(dox,dinj,dgrain,dthroat,dV,dD0)
     Nozzle_Efficiency = 0.9772;
     Reaction_Efficiency = 0.75;
     Drag_Efficiency = 0.96223;
-    Cd = Drag_Efficiency;
+
+    %Injector Discharge Coefficient
+    Cd = 0.7;
 
     P0 = 101325;             % Initial Pressure [Pa]
     Pe = P0;                % Chamber Pressure
@@ -541,7 +543,7 @@ function [imp] = calcImpulse(dox,dinj,dgrain,dthroat,dV,dD0)
         figure(10), plot(Dn_ox(:,1),Dn_ox(:,2),'m',Dn_F(:,1),Dn_F(:,2),'c',Dn_m(:,1),Dn_m(:,2), 'r','LineWidth',2),grid, ...
             title('Mass Flow Rate vs. Time'), ...
             xlabel('Time [s]'), ...
-            ylabel('Rate [kmol/s]'), ...
+            ylabel('Rate [kg/s]'), ...
             legend('Oxidizer','Fuel','Combined'),drawnow;
         figure(11), plot(Thrust(:,1),Thrust(:,2), 'r','LineWidth',1),grid, ...
             title('Thrust vs. Time'), ...
