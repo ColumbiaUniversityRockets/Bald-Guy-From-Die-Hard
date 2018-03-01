@@ -1,0 +1,57 @@
+﻿# encoding: utf-8
+# Release 18.2
+SetScriptVersion(Version="18.2.109")
+template1 = GetTemplate(
+    TemplateName="Static Structural",
+    Solver="ANSYS")
+system1 = template1.CreateSystem()
+geometry1 = system1.GetContainer(ComponentName="Geometry")
+geometry1.SetFile(FilePath=GetAbsoluteUserPathName("GitHub/Bald-Guy-From-Die-Hard/Engine Model/Oxidizer Tank/End Cap ansys igs3.IGS"))
+engineeringData1 = system1.GetContainer(ComponentName="Engineering Data")
+matl1 = engineeringData1.CreateMaterial(Name="Aluminum 6061-T6")
+favorites1 = EngData.LoadFavoriteItems()
+library1 = EngData.CreateLibrary(
+    Name="ChuckleLibrary",
+    FilePath=GetAbsoluteUserPathName("GitHub/Bald-Guy-From-Die-Hard/Engine Model/Ansys stuff/ChuckleLibrary.xml"))
+library2 = EngData.OpenLibrary(
+    Name="ChuckleLibrary",
+    Source=GetAbsoluteUserPathName("GitHub/Bald-Guy-From-Die-Hard/Engine Model/Ansys stuff/ChuckleLibrary.xml"))
+matl2 = library2.CreateMaterial(Name="Aluminum 6061-T6")
+matlProp1 = matl2.CreateProperty(
+    Name="Tensile Yield Strength",
+    Qualifiers={"Definition": "", "Behavior": ""})
+matlProp1.SetVariableProperty(
+    VariableName="Tensile Yield Strength",
+    Property="Unit",
+    Value="psi")
+matlProp1.SetData(
+    Index=-1,
+    Variables=["Tensile Yield Strength"],
+    Values=[["40000 [psi]"]])
+matlProp2 = matl2.CreateProperty(
+    Name="Elasticity",
+    Behavior="Isotropic",
+    Qualifiers={"Definition": "", "Behavior": "Isotropic"})
+matlProp2.SetData(
+    SheetName="Elasticity",
+    SheetQualifiers={"Definition": "", "Behavior": "Isotropic", "Derive from": "Young's Modulus and Poisson's Ratio"},
+    Index=-1,
+    Variables=["Young's Modulus"],
+    Values=[["10000000 [Pa]"]])
+matlProp2.SetData(
+    SheetName="Elasticity",
+    SheetQualifiers={"Definition": "", "Behavior": "Isotropic", "Derive from": "Young's Modulus and Poisson's Ratio"},
+    Variables=["Poisson's Ratio"],
+    Values=[["0.33"]])
+library2.Save()
+matl1.Delete()
+matl3 = engineeringData1.ImportMaterial(
+    Name="Aluminum 6061-T6",
+    Source=GetAbsoluteUserPathName("GitHub/Bald-Guy-From-Die-Hard/Engine Model/Ansys stuff/ChuckleLibrary.xml"))
+material1 = engineeringData1.GetMaterial(Name="Structural Steel")
+material1.Delete()
+modelComponent1 = system1.GetComponent(Name="Model")
+modelComponent1.Refresh()
+model1 = system1.GetContainer(ComponentName="Model")
+model1.Edit()
+Save(Overwrite=True)
