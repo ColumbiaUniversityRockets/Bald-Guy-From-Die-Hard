@@ -53,7 +53,7 @@ Ainj = 0.000021;    % injector area [m^2]                           //0.00191325
 Main_Ainj = Ainj;
 %****************************************************************
 global V;
-V = 0.00775;             % total tank volume [m^3]
+V = 0.008;             % total tank volume [m^3]
 Main_V = V;
 %****************************************************************
 Nozzle_Throat_Diameter = 0.0245;                                       %Diameter of nozzle throat [m]
