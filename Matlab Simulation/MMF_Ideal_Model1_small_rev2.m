@@ -45,7 +45,7 @@ global Thrust;
 global initImp;
 %****************************************************************
 global m_loaded;
-m_loaded = 5.15;    % N2O mass initially loaded into tank [kg]       //4.3
+m_loaded = 5.0;    % N2O mass initially loaded into tank [kg]       //4.3
 Main_m_loaded = m_loaded;
 %****************************************************************
 global Ainj;
@@ -66,7 +66,7 @@ Length = 0.25;           % Grain Length [m]
 Main_Length = Length;
 %****************************************************************
 global D0;
-D0 = 0.04;              % Initial Port Diameter [m]
+D0 = 0.055;              % Initial Port Diameter [m]
 Main_D0 = D0;
 D = D0;
 
@@ -257,7 +257,7 @@ end
 %function to calculate the impulse given by the engine given a small change
 %to one or more parameters from its original value
 function [imp] = calcImpulse(dox,dinj,dgrain,dthroat,dV,dD0)
-    Ti = 293.3;              % Test 4
+    Ti = 293.5;              % Test 4
     R = 8314.3;             % universal gas constant [J/(kmol*K)]
 
     a_coeff = 0.000155;     % aG^n coeffs
@@ -358,6 +358,7 @@ function [imp] = calcImpulse(dox,dinj,dgrain,dthroat,dV,dD0)
     i_i = 0;
     i_f = tf/tstep;
 
+    
     for i=i_i:i_f
         t = i*tstep;
 
