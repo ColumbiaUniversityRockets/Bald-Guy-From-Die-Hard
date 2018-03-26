@@ -45,7 +45,7 @@ global Thrust;
 global initImp;
 %****************************************************************
 global m_loaded;
-m_loaded = 5.0;    % N2O mass initially loaded into tank [kg]       //4.3
+m_loaded = 4.55;    % N2O mass initially loaded into tank [kg]       //4.3
 Main_m_loaded = m_loaded;
 %****************************************************************
 global Ainj;
@@ -475,7 +475,7 @@ function [imp] = calcImpulse(dox,dinj,dgrain,dthroat,dV,dD0)
         Diam(i+1,2) = D;
         
 
-        %Foreard Difference Method
+        %Forward Difference Method
         To = To + dT*tstep;
         n_go = n_go + dn_g*tstep;
         n_lo = n_lo + dn_l*tstep;

@@ -45,28 +45,28 @@ global Thrust;
 global initImp;
 %****************************************************************
 global m_loaded;
-m_loaded = 4.3;    % N2O mass initially loaded into tank [kg]       //4.3
+m_loaded = 4.5;    % N2O mass initially loaded into tank [kg]       //4.3
 Main_m_loaded = m_loaded;
 %****************************************************************
 global Ainj;
-Ainj = 0.0000154;    % injector area [m^2]                           //0.00191325996 m radius, 1.9133mm
+Ainj = 0.00002;    % injector area [m^2]                           //0.00191325996 m radius, 1.9133mm
 Main_Ainj = Ainj;
 %****************************************************************
 global V;
-V = 0.007;             % total tank volume [m^3]
+V = 0.0081;             % total tank volume [m^3]
 Main_V = V;
 %****************************************************************
-Nozzle_Throat_Diameter = 0.02055;                                       %Diameter of nozzle throat [m]
+Nozzle_Throat_Diameter = 0.0245;                                       %Diameter of nozzle throat [m]
 global A_Star;
 A_Star = pi*(Nozzle_Throat_Diameter/2)*(Nozzle_Throat_Diameter/2);      % Nozzle Throat Area [m^3]
 Main_A_Star = A_Star;
 %****************************************************************
 global Length;
-Length = 0.21;           % Grain Length [m]
+Length = 0.25;           % Grain Length [m]
 Main_Length = Length;
 %****************************************************************
 global D0;
-D0 = 0.04;              % Initial Port Diameter [m]
+D0 = 0.055;              % Initial Port Diameter [m]
 Main_D0 = D0;
 D = D0;
 
