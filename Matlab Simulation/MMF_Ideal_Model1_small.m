@@ -17,9 +17,9 @@ OUTPUT_THRUST_CURVE = 1;
 MINIMIZE_VALUE = false;     %Minimize or maximize gradient descent value?
 %******************************THRUST CURVE DATA************************************%
 MOTOR_NAME = "Bald_Guy_From_Die_Hard";
-MOTOR_DIAMETER = "98.0";    %Common: 11.0, 13.0, 18.0, 24.0, 29.0, 38.0, 54.0, 
+MOTOR_DIAMETER = "146.05";    %Common: 11.0, 13.0, 18.0, 24.0, 29.0, 38.0, 54.0, 
                             %        75.0, 81.0, 98.0, 111.0, 150.0, 161.0
-MOTOR_LENGTH = "914.0";
+MOTOR_LENGTH = "1397.0";
 MOTOR_DELAYS = "27";
 MOTOR_TOTAL_WEIGHT = "12.5000";
 MOTOR_MANUFACTURER = "Elongated_Muskrat";
@@ -45,15 +45,15 @@ global Thrust;
 global initImp;
 %****************************************************************
 global m_loaded;
-m_loaded = 4.5;    % N2O mass initially loaded into tank [kg]       //4.3
+m_loaded = 7.0;    % N2O mass initially loaded into tank [kg]       //4.3
 Main_m_loaded = m_loaded;
 %****************************************************************
 global Ainj;
-Ainj = 0.00002;    % injector area [m^2]                           //0.00191325996 m radius, 1.9133mm
+Ainj = 0.000021;    % injector area [m^2]                           //0.00191325996 m radius, 1.9133mm
 Main_Ainj = Ainj;
 %****************************************************************
 global V;
-V = 0.0081;             % total tank volume [m^3]
+V = 0.01;             % total tank volume [m^3]
 Main_V = V;
 %****************************************************************
 Nozzle_Throat_Diameter = 0.0245;                                       %Diameter of nozzle throat [m]
