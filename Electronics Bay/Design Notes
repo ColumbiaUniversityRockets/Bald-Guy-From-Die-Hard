@@ -1,0 +1,33 @@
+----- Last updae: Apr 8 2018 Qi -----
+
+Avionics Bay Design
+Materials:
+wall: 6’’ bluetube (made of of cellulose fiber), more durable and less brittle than phenolic tubes, less expensive than carbon fiber
+Bulkheads & sled: clear polycarbonate (PC): greater tensile strength than fiberglass; easier to drill or cut;
+
+Parts in bay:
+All parts will be screwed on the sled and secured with zip ties
+Teensy3.2 with prop shield & battery; --microcontroller for (optional) auto-stabilizing, driving the cameras, data-logging and payload deployment
+Stratologger Altimeter w/ 3S lipo battery; -- primary dual deployment altimeter
+Redundant flight computer(Raven or Telemetrum) w/ 3S lipo battery; 
+XBee-Pro: 900 MHz flight-ground communication
+Rotary switch
+
+Altimeter static ports:
+One of the static ports functions as a hole for the rotary switch as well
+Number & size: 0.26’’ diameter holes * 3;
+Position: 2.5’’ from the bottom of the electronics bay;
+Calculation references: StaticPorts AltimeterPortSizing
+
+Camera: Mobius2 Action Camera + 808 Keychain camera
+Mounting:
+Both cameras can be mounted to the outside wall of the rocket body
+Mobius points downward and the keychain camera points horizontally or upward
+The keychain camera could be put in the nose cone as an alternative solution
+
+Turn on/off the cameras
+Both cameras can be driven by the Teensy with direct wire connection
+Put a relay in parallel with the power on/off button and recording on/off button of the Mobius2; then use the teensy to drive the relay so that recording automatically starts after the launch and stops when the flight mission ends. TweakMobius2Chip 
+
+Data Storage
+Each camera carries a 16GB SD card (without any external power supply Mobius2 can record for about  2 hr 15 min, the keychain camera 60 min). Videos are exported to a PC after each flight.
